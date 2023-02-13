@@ -70,3 +70,6 @@
 
 
 ## 프론트 구성
+![](https://velog.velcdn.com/images/jw0097/post/35813402-7fa1-474d-90ca-385fb806a41c/image.svg)
+
+
