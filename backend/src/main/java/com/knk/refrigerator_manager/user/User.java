@@ -1,61 +1,67 @@
 package com.knk.refrigerator_manager.user;
 
+import com.knk.refrigerator_manager.refrigerator.Refrigerator;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Entity
-@Getter
+@Entity //jpa entity 선언
+@Getter @Setter
+@Table(name="user")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@Builder
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private Long id;
+    @Id
+    @Column(name = "USER_ID", nullable = false)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY) 만약 auto increment라면
+    private String id;
 
-    @Column(name = "user_pwd")
+    @Column(name = "USER_PWD", nullable = false)
     private String password;
 
-    @Column(name = "username")
+    @Column(name = "USER_NAME", nullable = false)
     private String username;
 
-    @Column(name = "user_phone")
+    @Column(name = "USER_PHONE")
     private String phone;
 
-    @Column(name = "user_email")
+    @Column(name = "USER_EMAIL")
     private String email;
 
-    @Column(name = "user_birth")
-    private String birth;
-
-    @Column(name = "user_profile")
-    private String profile;
+    @Column(name = "USER_BIRTH")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date birth;
 
     @Column(name = "enroll_date")
-    private Date enroll_date;
+    @CreatedDate
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDateTime enroll_date;
 
     @Column(name = "login_type")
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) //enum의 String 값 자체가 db에 저장
     private LoginType login_type;
 
-    @Column(name = "is_deleted")
-    private Boolean isDeleted;
+//    //단방향이면 지워야함(토의후 결정)
+//    @OneToOne(mappedBy = "user")
+//    private Refrigerator refrigerator;
 
-    @Builder
-    public User(String password, String username, String phone, String email, String birth,
-                String profile, Date enroll_date,Boolean isDeleted) {
-        this.username = username;
-        this.password = password;
-        this.phone = phone;
-        this.email = email;
-        this.birth = birth;
-        this.profile = profile;
-        this.enroll_date = enroll_date;
-        this.isDeleted = isDeleted;
-    }
+//    @Builder
+//    public User(String id, String password, String username, String phone, String email, Date birth,
+//                LocalDateTime enroll_date, LoginType login_type) {
+//        this.id = id;
+//        this.username = username;
+//        this.password = password;
+//        this.phone = phone;
+//        this.email = email;
+//        this.birth = birth;
+//        this.enroll_date = enroll_date;
+//        this.login_type = login_type;
+//    }
 
     public void updatePassword(String password){
         this.password = password;
