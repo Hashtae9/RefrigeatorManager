@@ -1,5 +1,7 @@
 package com.knk.refrigerator_manager.ingre_refri;
 
+import com.knk.refrigerator_manager.ingredient.Ingredient;
+import com.knk.refrigerator_manager.refrigerator.Refrigerator;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,11 +20,13 @@ public class Ingre_refri {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ingre_refri_id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @Column(name = "refri_seq")
-    private Long refri_seq;
+    private Refrigerator refri_seq;
 
+    @ManyToOne(fetch = FetchType.LAZY)
     @Column(name = "ingre_seq")
-    private Long ingre_seq;
+    private Ingredient ingre_seq;
 
     @Column(name = "refri_expir_date")
     @DateTimeFormat(pattern = "yyyy-mm-dd")
