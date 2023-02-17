@@ -29,11 +29,10 @@ public class Refrigerator {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date refri_date;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "refrigerator")
     private User user;
 
     //냉장고 입장에서는 어떤 재료가 있는지 알아야함
-    @OneToMany(mappedBy = "refrigerator")
+    @OneToMany(mappedBy = "refrigerator", cascade = CascadeType.PERSIST)
     private List<Ingre_refri> ingre_refris = new ArrayList<>();
 }

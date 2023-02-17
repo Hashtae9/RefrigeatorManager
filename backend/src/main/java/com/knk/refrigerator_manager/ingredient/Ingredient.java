@@ -20,10 +20,14 @@ public class Ingredient {
     private Long ingre_seq;
 
     @Column(name = "ingre_name")
-    private String ingre_name;
+    private String ingreName;
 
     //재료입장에서는 재료가 들어가있는 냉장고를 알아야 하나? => 없을듯
 
     @OneToMany(mappedBy = "ingredient")
     private List<Ingre_recipe> ingre_recipes = new ArrayList<>();
+
+    public void update(String ingreName){
+        this.ingreName = ingreName;
+    }
 }

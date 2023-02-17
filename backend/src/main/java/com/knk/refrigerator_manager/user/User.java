@@ -46,9 +46,9 @@ public class User {
     @Enumerated(EnumType.STRING) //enum의 String 값 자체가 db에 저장
     private LoginType login_type;
 
-//    //단방향이면 지워야함(토의후 결정)
-//    @OneToOne(mappedBy = "user")
-//    private Refrigerator refrigerator;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "refri_seq")
+    private Refrigerator refrigerator;
 
 //    @Builder
 //    public User(String id, String password, String username, String phone, String email, Date birth,

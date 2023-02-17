@@ -21,12 +21,12 @@ public class Ingre_refri {
     private Long ingre_refri_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "refri_seq")
-    private Refrigerator refri_seq;
+    @JoinColumn(name = "refri_seq", nullable = false)
+    private Refrigerator refrigerator;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "ingre_seq")
-    private Ingredient ingre_seq;
+    @JoinColumn(name = "ingre_seq", nullable = false)
+    private Ingredient ingredient;
 
     @Column(name = "refri_expir_date")
     @DateTimeFormat(pattern = "yyyy-mm-dd")
