@@ -20,7 +20,7 @@ public class Refrigerator {
     @Id
     @Column(name = "refri_seq", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long refri_seq;
+    private Long refriID;
 
     @Column(name = "refri_name")
     private String refri_name;
@@ -29,8 +29,8 @@ public class Refrigerator {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date refri_date;
 
-    @OneToOne(mappedBy = "refrigerator")
-    private User user;
+//    @OneToOne(mappedBy = "refrigerator")
+//    private User user;
 
     //냉장고 입장에서는 어떤 재료가 있는지 알아야함
     @OneToMany(mappedBy = "refrigerator", cascade = CascadeType.PERSIST)

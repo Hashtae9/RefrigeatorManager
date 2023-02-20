@@ -19,7 +19,7 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rec_seq")
-    private Long rec_seq;
+    private Long recID;
 
     @Column(name = "rec_title")
     private String rec_title;
@@ -43,6 +43,6 @@ public class Recipe {
     @Column(name = "rec_ingre_count")
     private int rec_ingre_count;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Ingre_recipe> ingre_recipes = new ArrayList<>();
 }

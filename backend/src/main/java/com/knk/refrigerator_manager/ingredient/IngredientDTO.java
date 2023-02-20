@@ -1,20 +1,28 @@
 package com.knk.refrigerator_manager.ingredient;
 
+import jakarta.persistence.Column;
 import lombok.*;
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 public class IngredientDTO {
     private String ingreName;
-    private String source;
-    private String defaultCheck;
+    private String imgSource;
+    private Boolean defaultIngre;
+
 
     @Builder
-    public IngredientDTO(String ingre_name){
+    public IngredientDTO(String ingre_name, String imgSource, Boolean defaultIngre){
         this.ingreName = ingreName;
+        this.imgSource = imgSource;
+        this.defaultIngre = defaultIngre;
     }
 
     public Ingredient toEntity(){
-        return Ingredient.builder().ingreName(ingreName).build();
+        return Ingredient.builder()
+                .ingreName(ingreName)
+                .imgSource(imgSource)
+                .defaultIngre(defaultIngre)
+                .build();
     }
 }

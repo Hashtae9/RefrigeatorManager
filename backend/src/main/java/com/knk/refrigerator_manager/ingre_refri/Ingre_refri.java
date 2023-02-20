@@ -18,7 +18,7 @@ public class Ingre_refri {
     @Id
     @Column(name = "ingre_refri_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ingre_refri_id;
+    private Long ingreRefriId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "refri_seq", nullable = false)
@@ -30,7 +30,7 @@ public class Ingre_refri {
 
     @Column(name = "refri_expir_date")
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date refri_expir_date;
+    private Date refriExpirDate;
 
     @Column(name = "frozen")
     private Boolean frozen;

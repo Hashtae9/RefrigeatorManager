@@ -1,6 +1,9 @@
 package com.knk.refrigerator_manager.recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +20,11 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Recipe>> getPageableRecipe(){
-        List<Recipe> recipes = new ArrayList<>();
-        return ResponseEntity.status(HttpStatus.OK).body(recipes);
+    //레시피 받기
+    @GetMapping("/api/searchRecipe/{pagenum}")
+    public Page<String> getPageableRecipe(@PathVariable("pagenum") int page){
+        PageRequest pageRequest = PageRequest.of(page, 5);
+        return recipeService.findAll(pageRequest);
     }
 
 
