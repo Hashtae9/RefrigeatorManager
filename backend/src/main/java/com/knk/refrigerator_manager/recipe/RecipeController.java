@@ -24,8 +24,14 @@ public class RecipeController {
     @GetMapping("/api/searchRecipe/{pagenum}")
     public Page<String> getPageableRecipe(@PathVariable("pagenum") int page){
         PageRequest pageRequest = PageRequest.of(page, 5);
-        return recipeService.findAll(pageRequest);
+        return recipeService.findPage(pageRequest);
     }
 
+    @GetMapping("/api/searchRecipe")
+    public List<String> getRecipe(){
+        return recipeService.findAllRecipe();
+    }
 
+//    @GetMapping("/api/detailRecipe/{recipeName}")
+//    public
 }

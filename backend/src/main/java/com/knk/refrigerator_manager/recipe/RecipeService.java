@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RecipeService {
     private RecipeRepository recipeRepository;
@@ -14,7 +16,11 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    public Page<String> findAll(PageRequest pageRequest){
-        return recipeRepository.findAllRecipeName(pageRequest);
+    public Page<String> findPage(PageRequest pageRequest){
+        return recipeRepository.findPageRecipeName(pageRequest);
+    }
+
+    public List<String> findAllRecipe(){
+        return recipeRepository.findAllRecipeName();
     }
 }

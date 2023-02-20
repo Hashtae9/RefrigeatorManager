@@ -10,5 +10,10 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Query("select r.rec_title from Recipe as r")
-    Page<String> findAllRecipeName(Pageable pageable);
+    Page<String> findPageRecipeName(Pageable pageable);
+
+    @Query("select r.rec_title from Recipe as r")
+    List<String> findAllRecipeName();
+
+
 }

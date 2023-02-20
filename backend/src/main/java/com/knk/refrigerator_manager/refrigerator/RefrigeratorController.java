@@ -17,17 +17,17 @@ public class RefrigeratorController {
         this.refrigeratorService = refrigeratorService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Refrigerator>> getAllUsers(){
-        String errors = "no errors";
-        List<Refrigerator> refrigerators = null;
-        try{
-            refrigerators = refrigeratorService.findAll();
-        } catch (final Exception e){
-            errors = e.getMessage();
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(refrigerators);
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public ResponseEntity<List<Refrigerator>> getAllUsers(){
+//        String errors = "no errors";
+//        List<Refrigerator> refrigerators = null;
+//        try{
+//            refrigerators = refrigeratorService.findAll();
+//        } catch (final Exception e){
+//            errors = e.getMessage();
+//        }
+//        return ResponseEntity.status(HttpStatus.OK).body(refrigerators);
+//    }
 
     @PatchMapping("/api/{refriName}")
     public Long changeRefriName(@PathVariable String refriName){

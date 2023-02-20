@@ -40,7 +40,7 @@ public class Ingre_refriService {
 
          //냉장고는 무조건 존재
         Refrigerator refrigerator = refrigeratorRepository.findById(2L)
-                .orElseThrow(() -> new IllegalArgumentException("해당 냉장고는 존재하지 않습니다. refrigerator ID = 1"));
+                .orElseThrow(() -> new IllegalArgumentException("해당 냉장고는 존재하지 않습니다. refrigerator ID = 2"));
 
         return ingre_refriRepository.save(ingreRefriDTO.toEntity(ingredient, refrigerator)).getIngreRefriId();
     }
