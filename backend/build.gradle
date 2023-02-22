@@ -23,19 +23,25 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//jwt
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5',
+			// Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+			//'org.bouncycastle:bcprov-jdk15on:1.70',
+			'io.jsonwebtoken:jjwt-jackson:0.11.5' // or 'io.jsonwebtoken:jjwt-gson:0.11.5' for gson
+
+	//Spring Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+//  Temporary explicit version to fix Thymeleaf bug
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'
+	implementation 'org.springframework.security:spring-security-test'
 
 	//jpa
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
 	//mysql db
 	implementation 'mysql:mysql-connector-java'
-
-	//webflux
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
-	// https://mvnrepository.com/artifact/org.json/json
-	implementation group: 'org.json', name: 'json', version: '20220924'
-
 }
 
 tasks.named('test') {
