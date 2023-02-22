@@ -1,5 +1,6 @@
 package com.knk.refrigerator_manager.user;
 
+
 import com.knk.refrigerator_manager.refrigerator.Refrigerator;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,14 +19,13 @@ import java.util.Date;
 public class User {
     @Id
     @Column(name = "USER_ID", nullable = false)
-    // @GeneratedValue(strategy = GenerationType.IDENTITY) 만약 auto increment라면
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "USER_PWD", nullable = false)
+    @Column(name = "USER_PWD")
     private String password;
 
-    //유저가 로그인시 입력하는 id
-    @Column(name = "USER_NAME", nullable = false)
+    @Column(name = "USER_NAME")
     private String username;
 
     @Column(name = "USER_PHONE")
@@ -33,7 +33,8 @@ public class User {
 
     @Column(name = "USER_EMAIL")
     private String email;
-
+    @Column(name = "USER_ROLE")
+    private String role;
     @Column(name = "USER_BIRTH")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birth;
@@ -51,18 +52,19 @@ public class User {
     @JoinColumn(name = "refri_seq")
     private Refrigerator refrigerator;
 
-//    @Builder
-//    public User(String id, String password, String username, String phone, String email, Date birth,
-//                LocalDateTime enroll_date, LoginType login_type) {
-//        this.id = id;
-//        this.username = username;
-//        this.password = password;
-//        this.phone = phone;
-//        this.email = email;
-//        this.birth = birth;
-//        this.enroll_date = enroll_date;
-//        this.login_type = login_type;
-//    }
+    @Builder
+    public User(Long id, String password, String username, String phone, String email, Date birth,
+                LocalDateTime enroll_date, LoginType login_type, String role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.email = email;
+        this.birth = birth;
+        this.enroll_date = enroll_date;
+        this.login_type = login_type;
+        this.role = role;
+    }
 
     public void updatePassword(String password){
         this.password = password;
