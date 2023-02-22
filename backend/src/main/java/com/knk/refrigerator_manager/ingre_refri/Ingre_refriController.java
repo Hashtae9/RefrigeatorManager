@@ -3,18 +3,13 @@ package com.knk.refrigerator_manager.ingre_refri;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.knk.refrigerator_manager.ingredient.Ingredient;
 import com.knk.refrigerator_manager.ingredient.IngredientDTO;
-import com.knk.refrigerator_manager.ingredient.IngredientService;
-import com.knk.refrigerator_manager.user.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RestController

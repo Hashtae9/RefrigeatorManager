@@ -1,7 +1,6 @@
 package com.knk.refrigerator_manager.refrigerator;
 
 import com.knk.refrigerator_manager.ingre_refri.Ingre_refri;
-import com.knk.refrigerator_manager.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
