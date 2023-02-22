@@ -32,7 +32,7 @@ public class Ingre_refriController {
 
     //앱 내의 양식 입력으로 냉장고 내 재료 등록
     @PostMapping("/api/addIngre")
-    public Long updateIngredient(@RequestBody ObjectNode saveObj){
+    public ResponseEntity<Long> updateIngredient(@RequestBody ObjectNode saveObj){
         ObjectMapper mapper = new ObjectMapper();   // JSON을 Object화 하기 위한 Jackson ObjectMapper 이용
         IngredientDTO ingredientDTO = null;
         try {
@@ -48,15 +48,15 @@ public class Ingre_refriController {
             throw new RuntimeException(e);
         }
 
-        return ingre_refriService.saveIngredient(ingredientDTO, ingreRefriDTO);
+        return ResponseEntity.ok().body(ingre_refriService.saveIngredient(ingredientDTO, ingreRefriDTO));
     }
 
     // 바코드로 재료 등록
 
     // 재료 삭제
     @DeleteMapping("/api/deleteIngre")
-    public Long deleteIngredient(@RequestBody IngredientDTO ingredientDTO){
-        return ingre_refriService.delete(ingredientDTO);
+    public ResponseEntity<Long> deleteIngredient(@RequestBody IngredientDTO ingredientDTO){
+        return ResponseEntity.ok().body(ingre_refriService.delete(ingredientDTO));
     }
 
 }

@@ -12,7 +12,7 @@ public class IngredientDTO {
 
 
     @Builder
-    public IngredientDTO(String ingre_name, String imgSource, Boolean defaultIngre){
+    public IngredientDTO(String ingreName, String imgSource, Boolean defaultIngre){
         this.ingreName = ingreName;
         this.imgSource = imgSource;
         this.defaultIngre = defaultIngre;

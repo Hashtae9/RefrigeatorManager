@@ -7,7 +7,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.function.EntityResponse;
 
+import javax.xml.stream.events.EntityReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,16 +24,28 @@ public class RecipeController {
 
     //레시피 받기
     @GetMapping("/api/searchRecipe/{pagenum}")
-    public Page<String> getPageableRecipe(@PathVariable("pagenum") int page){
+    public ResponseEntity<Page<String>> getPageableRecipe(@PathVariable("pagenum") int page){
         PageRequest pageRequest = PageRequest.of(page, 5);
-        return recipeService.findPage(pageRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(recipeService.findPage(pageRequest));
     }
 
     @GetMapping("/api/searchRecipe")
-    public List<String> getRecipe(){
-        return recipeService.findAllRecipe();
+    public ResponseEntity<List<String>> getRecipe(){
+        return ResponseEntity.status(HttpStatus.OK).body(recipeService.findAllRecipe());
     }
 
-//    @GetMapping("/api/detailRecipe/{recipeName}")
-//    public
+    @GetMapping("/api/detailRecipe/{recipeName}")
+    public ResponseEntity<RecipeDTO> getDetailRecipe(@PathVariable("recipeName") String name){
+        return ResponseEntity.status(HttpStatus.OK).body(recipeService.getRecipeDTO(name));
+    }
+
+    @GetMapping("/api/recommendRecipe")
+    public ResponseEntity<List<String>> getRecommendRecipe(){
+        List<String> recipes = recipeService.getRecipeInRefri();
+        if(recipes.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().body(recipes);
+    }
 }
