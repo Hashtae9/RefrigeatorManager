@@ -30,7 +30,7 @@ public class RefrigeratorController {
 //    }
 
     @PatchMapping("/api/{refriName}")
-    public Long changeRefriName(@PathVariable String refriName){
-        return refrigeratorService.patchUpdate(refriName);
+    public ResponseEntity<Long> changeRefriName(@PathVariable String refriName){
+        return ResponseEntity.ok().body(refrigeratorService.patchUpdate(refriName));
     }
 }

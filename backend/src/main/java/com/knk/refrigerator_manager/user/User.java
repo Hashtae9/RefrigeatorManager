@@ -24,6 +24,7 @@ public class User {
     @Column(name = "USER_PWD", nullable = false)
     private String password;
 
+    //유저가 로그인시 입력하는 id
     @Column(name = "USER_NAME", nullable = false)
     private String username;
 

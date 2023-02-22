@@ -22,7 +22,7 @@ public class Recipe {
     private Long recID;
 
     @Column(name = "rec_title")
-    private String rec_title;
+    private String recTitle;
 
     @Column(name = "rec_date")
     @DateTimeFormat(pattern = "yyyy-mm-dd")
