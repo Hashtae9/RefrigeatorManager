@@ -1,5 +1,7 @@
 package com.knk.refrigerator_manager.user;
 
+import com.knk.refrigerator_manager.Login.RegisterForm;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-//@RequiredArgsConstructor//기존의 Autowired 후 의존성 주입이 간편해짐
+@Transactional //(readOnly = true)
+@RequiredArgsConstructor//기존의 Autowired 후 의존성 주입이 간편해짐
 @Slf4j
 public class UserService {
     //Constructor(생성자),Setter,Field
@@ -28,5 +31,12 @@ public class UserService {
             log.info("user 객체 없음");
             throw new IllegalArgumentException("no such data");
         }
+    }
+
+    @Transactional
+    public Long createUser(RegisterForm form) {
+        User user = form.toEntity();
+        userRepository.save(user);
+        return user.getId();
     }
 }
