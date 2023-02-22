@@ -1,6 +1,8 @@
 package com.knk.refrigerator_manager.Login;
 
 import com.knk.refrigerator_manager.jwt.*;
+import com.knk.refrigerator_manager.user.User;
+import com.knk.refrigerator_manager.user.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

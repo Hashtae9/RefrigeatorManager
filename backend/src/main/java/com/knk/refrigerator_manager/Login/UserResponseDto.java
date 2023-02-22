@@ -1,5 +1,6 @@
 package com.knk.refrigerator_manager.Login;
 
+import com.knk.refrigerator_manager.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

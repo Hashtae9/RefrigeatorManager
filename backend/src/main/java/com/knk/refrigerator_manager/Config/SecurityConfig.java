@@ -4,6 +4,7 @@ import com.knk.refrigerator_manager.jwt.JwtAccessDeniedHandler;
 import com.knk.refrigerator_manager.jwt.JwtAuthenticationEntryPoint;
 import com.knk.refrigerator_manager.jwt.TokenProvider;
 import com.knk.refrigerator_manager.user.CustomUserDetailsService;
+import com.knk.refrigerator_manager.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

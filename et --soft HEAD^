@@ -1,0 +1,189 @@
+[33mcommit b486e6440d20f2789db3c8166fa3c229941ea18a[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: jw0097 <76507017+jw0097@users.noreply.github.com>
+Date:   Wed Feb 22 20:17:47 2023 +0900
+
+    commit
+
+[33mcommit d7392b5edbb928c1beb0a605354698c8d9c59902[m[33m ([m[1;31morigin/feature/addfront[m[33m)[m
+Merge: 864e284 6f066be
+Author: Hashtae9 <101400894+Hashtae9@users.noreply.github.com>
+Date:   Wed Feb 22 19:32:05 2023 +0900
+
+    Merge pull request #11 from Hashtae9/feature/ssss
+    
+    Feature/ssss
+
+[33mcommit 6f066bee5336680ec7217331fba947321d245a9a[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Wed Feb 22 19:29:15 2023 +0900
+
+    수정 1
+
+[33mcommit 7f4872311723aab3af9ae0e4e78724d8f6e57cb4[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Wed Feb 22 19:26:06 2023 +0900
+
+    수정 1
+
+[33mcommit 864e2844e1519daa17b6e6d934beb0f3ea29febc[m
+Author: jw0097 <76507017+jw0097@users.noreply.github.com>
+Date:   Wed Feb 22 18:45:54 2023 +0900
+
+    Revert "front-back connect" (#8)
+    
+    * Revert "front-back connect"
+    
+    * Update build.gradle
+
+[33mcommit f18bc7d8e9e06af30b4afa47bf0d181ffa5e5153[m
+Author: Hashtae9 <101400894+Hashtae9@users.noreply.github.com>
+Date:   Wed Feb 22 18:29:14 2023 +0900
+
+    Revert "Revert "front-back connect" (#6)"
+    
+    This reverts commit 64b03e79ac0c5d30a916b33f7cb94e3553caf76b.
+
+[33mcommit 64b03e79ac0c5d30a916b33f7cb94e3553caf76b[m
+Author: jw0097 <76507017+jw0097@users.noreply.github.com>
+Date:   Wed Feb 22 18:28:27 2023 +0900
+
+    Revert "front-back connect" (#6)
+
+[33mcommit 3afdaeae5fcb9c76d01b21a8bd1ef04bd2ef2603[m
+Merge: 0b785e8 9d5e32f
+Author: Hashtae9 <101400894+Hashtae9@users.noreply.github.com>
+Date:   Wed Feb 22 18:19:14 2023 +0900
+
+    Merge pull request #5 from Hashtae9/feature/frontbackconnection
+    
+    front-back connect
+
+[33mcommit 9d5e32fff5e40d137228efca10b1abfcc22c3e34[m
+Author: jw0097 <76507017+jw0097@users.noreply.github.com>
+Date:   Wed Feb 22 17:54:58 2023 +0900
+
+    front-back connect
+
+[33mcommit 0b785e86f139053c90cb24128074a283a3990714[m
+Merge: f9fc354 a5d99bb
+Author: jw0097 <76507017+jw0097@users.noreply.github.com>
+Date:   Wed Feb 22 17:31:25 2023 +0900
+
+    Merge pull request #4 from Hashtae9/feature/RecipeIngredientAPI
+    
+    Recipe API complete(with Bacode api)
+
+[33mcommit a5d99bb0b8bc170ad89b43413192c5ef5bb89390[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Wed Feb 22 17:29:36 2023 +0900
+
+    Recipe API complete(with Bacode api)
+
+[33mcommit f9fc354accc5b7d86283f9893862d68d47733a84[m
+Merge: 7d7c646 efc2ac7
+Author: jw0097 <76507017+jw0097@users.noreply.github.com>
+Date:   Wed Feb 22 17:28:16 2023 +0900
+
+    Merge pull request #3 from Hashtae9/feature/RecipeIngredientAPI
+    
+    Recipe API complete(with Bacode api)
+
+[33mcommit efc2ac7f1e8fb2b2c280ea0d04b3a166f38ac4dd[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Wed Feb 22 17:07:42 2023 +0900
+
+    Recipe API complete(with Bacode api)
+
+[33mcommit 7d7c64657be18730249fa12792c36285ba738f3e[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Mon Feb 20 20:51:24 2023 +0900
+
+    Refrigerator api complete(except Adding ingredient with bacode)
+
+[33mcommit 73d37527f4d0848ada261de29d28f6a16af23993[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Mon Feb 20 20:40:56 2023 +0900
+
+    Refrigerator api complete(except Adding ingredient with bacode)
+
+[33mcommit bc313c2cf13729bf94506666547925a4d6ec6ef0[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Mon Feb 20 14:04:28 2023 +0900
+
+    Refrigerator api complete(except Adding ingredient with bacode)
+
+[33mcommit 4e57b937cf3482e66d6c24cfcc3bb817c80bf283[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Fri Feb 17 15:56:42 2023 +0900
+
+    Feature/IngredientAdd
+
+[33mcommit 61b68f17a3ad638c08dbe46ff2ff9e24976acf52[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Fri Feb 17 15:51:23 2023 +0900
+
+    Feature/IngredientAdd
+
+[33mcommit 0888837ef64f326c5fde4d4dc148959260c00753[m
+Merge: 40e8eea ac43498
+Author: Hashtae9 <101400894+Hashtae9@users.noreply.github.com>
+Date:   Thu Feb 16 15:39:11 2023 +0900
+
+    Merge pull request #1 from Hashtae9/Feature/JPAdefaultSetting
+    
+    JPAdefaultSetting complete
+
+[33mcommit ac434981db2ad25aff32d8c9563e4c99a8744907[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Wed Feb 15 15:54:52 2023 +0900
+
+    JPAdefaultSetting complete
+
+[33mcommit 40e8eeac9f9d496853c8c1a1db1dc1d7b1c7f59c[m
+Merge: 2115e47 cb76873
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Mon Feb 13 17:11:08 2023 +0900
+
+    Merge branch 'main' of https://github.com/Hashtae9/RefrigeatorManager
+
+[33mcommit 2115e474a542a44cac73dfa3d9dcc6e7c0de5181[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Mon Feb 13 17:10:54 2023 +0900
+
+    db 연동 및 jpa 기본 설정(ver.1)
+
+[33mcommit cb76873e324eca01230db040d2e128f3b57492cc[m
+Author: jw0097 <76507017+jw0097@users.noreply.github.com>
+Date:   Wed Feb 8 19:17:46 2023 +0900
+
+    Update README.md
+
+[33mcommit 65220642c8698349f801d33a90e1e08c4a59c431[m
+Author: jw0097 <76507017+jw0097@users.noreply.github.com>
+Date:   Wed Feb 8 19:17:01 2023 +0900
+
+    Update README.md
+
+[33mcommit 12a79d5a744aaa52248659cef2fdb16472c708fd[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Wed Feb 8 12:50:09 2023 +0900
+
+    user entity
+
+[33mcommit 4f9e1ca4b13d0f61ec5172775c91df78e79b41f5[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Tue Feb 7 17:32:11 2023 +0900
+
+    project 기본 정보 설명
+
+[33mcommit 6a00ee103ed8df6a6229e05bbbcac391a736cb22[m
+Author: Hashtae9 <hashtae9@gmail.com>
+Date:   Tue Feb 7 17:27:45 2023 +0900
+
+    어플리케이션 기본 세팅
+
+[33mcommit 1eba093c907cb8176b032f9774a76be07ced9ecf[m
+Author: Hashtae9 <101400894+Hashtae9@users.noreply.github.com>
+Date:   Tue Feb 7 17:24:00 2023 +0900
+
+    Initial commit
