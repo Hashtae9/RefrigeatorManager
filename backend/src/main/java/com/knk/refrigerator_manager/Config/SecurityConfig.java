@@ -43,7 +43,7 @@ public class SecurityConfig {
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .accessDeniedHandler(jwtAccessDeniedHandler);
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/registerUser", "/*", "/auth/**").permitAll()
+                .requestMatchers("/registerUser", "/*", "/auth/**", "/api/**", "/**").permitAll()
                 .requestMatchers("/user/user").hasRole("USER")
                 .requestMatchers("/admin/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()

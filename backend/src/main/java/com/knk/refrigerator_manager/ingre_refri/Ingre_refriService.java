@@ -52,7 +52,7 @@ public class Ingre_refriService {
         Long ingreID = ingredient1.get().getIngreID();
 
         //현재는 그냥 입력받지만 session을 통해 refriID 받아오기
-        Long refriID = 2L;
+        Long refriID = 1L;
         Optional<Ingre_refri> byRefriIDAndIngreID = ingre_refriRepository.findByRefriIDAndIngreID(refriID, ingreID);
         Long id = null;
         if(byRefriIDAndIngreID.isPresent()){
@@ -64,7 +64,7 @@ public class Ingre_refriService {
 
     //냉장고속 재료 출력
     public List<IngreRefriResponseDTO> findAllIngredientInRefri(){
-        List<Ingre_refri> ingre_refris = ingre_refriRepository.findAllByRefriID(2L);
+        List<Ingre_refri> ingre_refris = ingre_refriRepository.findAllByRefriID(1L);
         List<IngreRefriResponseDTO> ingreRefriResponseDTOS = new ArrayList<IngreRefriResponseDTO>();
         for(Ingre_refri i: ingre_refris){
             IngreRefriResponseDTO ingreRefriResponseDTO = new IngreRefriResponseDTO().builder()

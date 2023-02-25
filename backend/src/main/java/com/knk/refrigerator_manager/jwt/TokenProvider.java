@@ -64,6 +64,8 @@ public class TokenProvider {
                 .accessToken(accessToken)
                 .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
                 .refreshToken(refreshToken)
+                .username(authentication.getName())
+                .refrigerator(1L)
                 .build();
     }
 

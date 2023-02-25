@@ -1,5 +1,6 @@
 package com.knk.refrigerator_manager.recipe;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +14,7 @@ import javax.xml.stream.events.EntityReference;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/recipes")
 public class RecipeController {
@@ -31,6 +33,7 @@ public class RecipeController {
 
     @GetMapping("/api/searchRecipe")
     public ResponseEntity<List<String>> getRecipe(){
+        log.info("SearchRecipe");
         return ResponseEntity.status(HttpStatus.OK).body(recipeService.findAllRecipe());
     }
 

@@ -27,6 +27,7 @@ public class RecipeService {
     }
 
     public List<String> findAllRecipe(){
+        log.info("findAllrecipe");
         return recipeRepository.findAllRecipeName();
     }
 

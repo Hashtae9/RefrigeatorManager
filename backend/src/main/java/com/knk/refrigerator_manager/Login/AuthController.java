@@ -29,8 +29,10 @@ public class AuthController {
         return ResponseEntity.ok(authService.reissue(tokenRequestDto));
     }
     @GetMapping("/logingettest")
-    public String logingettest(Authentication authentication) {
+    public String logingettest() {
         String userName = SecurityUtil.getCurrentMemberId();
         return userName;
     }
+
+
 }
