@@ -1,5 +1,8 @@
 package com.knk.refrigerator_manager.Login;
 
+import com.knk.refrigerator_manager.refrigerator.Refrigerator;
+import com.knk.refrigerator_manager.user.LoginType;
+import com.knk.refrigerator_manager.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -37,6 +40,7 @@ public class UserRequestDto {
                 .birth(new Date())
                 .enroll_date(LocalDateTime.now())
                 .login_type(LoginType.KAKAO)
+                //.refrigerator(new Refrigerator())
                 .build();
     }
     public UsernamePasswordAuthenticationToken toAuthentication() {

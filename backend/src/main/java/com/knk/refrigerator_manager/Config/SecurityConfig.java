@@ -4,6 +4,7 @@ import com.knk.refrigerator_manager.jwt.JwtAccessDeniedHandler;
 import com.knk.refrigerator_manager.jwt.JwtAuthenticationEntryPoint;
 import com.knk.refrigerator_manager.jwt.TokenProvider;
 import com.knk.refrigerator_manager.user.CustomUserDetailsService;
+import com.knk.refrigerator_manager.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class SecurityConfig {
                 .authenticationEntryPoint(jwtAuthenticationEntryPoint)
                 .accessDeniedHandler(jwtAccessDeniedHandler);
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/registerUser", "/*", "/auth/**").permitAll()
+                .requestMatchers("/registerUser", "/*", "/auth/**", "/api/**", "/**").permitAll()
                 .requestMatchers("/user/user").hasRole("USER")
                 .requestMatchers("/admin/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()

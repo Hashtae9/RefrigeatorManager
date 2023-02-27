@@ -1,5 +1,8 @@
 package com.knk.refrigerator_manager.Login;
 
+import com.knk.refrigerator_manager.user.User;
+import com.knk.refrigerator_manager.user.UserRepository;
+import com.knk.refrigerator_manager.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,6 +2,7 @@ package com.knk.refrigerator_manager.Login;
 import com.knk.refrigerator_manager.Config.SecurityUtil;
 import com.knk.refrigerator_manager.jwt.TokenDto;
 import com.knk.refrigerator_manager.jwt.TokenRequestDto;
+import com.knk.refrigerator_manager.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -28,8 +29,10 @@ public class AuthController {
         return ResponseEntity.ok(authService.reissue(tokenRequestDto));
     }
     @GetMapping("/logingettest")
-    public String logingettest(Authentication authentication) {
+    public String logingettest() {
         String userName = SecurityUtil.getCurrentMemberId();
         return userName;
     }
+
+
 }
