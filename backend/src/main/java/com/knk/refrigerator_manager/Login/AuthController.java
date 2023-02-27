@@ -2,6 +2,7 @@ package com.knk.refrigerator_manager.Login;
 import com.knk.refrigerator_manager.Config.SecurityUtil;
 import com.knk.refrigerator_manager.jwt.TokenDto;
 import com.knk.refrigerator_manager.jwt.TokenRequestDto;
+import com.knk.refrigerator_manager.refrigerator.RefrigeratorService;
 import com.knk.refrigerator_manager.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
     private final AuthService authService;
     private final UserService userService;
+    private final RefrigeratorService refrigeratorService;
+
     @PostMapping("/signup")
     public ResponseEntity<UserResponseDto> signup(@RequestBody UserRequestDto memberRequestDto) {
+
         return ResponseEntity.ok(authService.signup(memberRequestDto));
     }
 

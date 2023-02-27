@@ -54,7 +54,7 @@ public class User {
 
     @Builder
     public User(Long id, String password, String username, String phone, String email, Date birth,
-                LocalDateTime enroll_date, LoginType login_type, String role) {
+                LocalDateTime enroll_date, LoginType login_type, String role, Refrigerator refrigerator) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -64,6 +64,7 @@ public class User {
         this.enroll_date = enroll_date;
         this.login_type = login_type;
         this.role = role;
+        this.refrigerator = refrigerator;
     }
 
     public void updatePassword(String password){
