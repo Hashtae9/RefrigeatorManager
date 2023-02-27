@@ -28,7 +28,7 @@ public class UserRequestDto {
         this.password = password;
     }
 
-    public User toEntity(){
+    public User toEntity(Refrigerator refrigerator){
         return User.builder()
                 .id(id)
                 .username(username)
@@ -40,7 +40,7 @@ public class UserRequestDto {
                 .birth(new Date())
                 .enroll_date(LocalDateTime.now())
                 .login_type(LoginType.KAKAO)
-                //.refrigerator(new Refrigerator())
+                .refrigerator(refrigerator)
                 .build();
     }
     public UsernamePasswordAuthenticationToken toAuthentication() {

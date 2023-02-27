@@ -9,6 +9,7 @@
       <working-dir>$ProjectFileDir$</working-dir>
       <driver-properties>
         <property name="allowPublicKeyRetrieval" value="TRUE" />
+        <property name="useSSL" value="TRUE" />
       </driver-properties>
     </data-source>
   </component>

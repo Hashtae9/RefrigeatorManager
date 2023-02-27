@@ -5,10 +5,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 @Setter @Getter
 @NoArgsConstructor
 public class RefrigeratorDTO {
     private String refri_name;
+    private LocalDate refri_date;
+
+    // 현재 날짜 구하기
+    LocalDate now = LocalDate.now();
 
     @Builder
     public RefrigeratorDTO(String refri_name){
@@ -16,6 +24,9 @@ public class RefrigeratorDTO {
     }
 
     public Refrigerator toEntity(){
-        return Refrigerator.builder().refri_name(refri_name).build();
+        return Refrigerator.builder()
+                .refri_name(refri_name)
+                .refri_date(now)
+                .build();
     }
 }
