@@ -1,6 +1,7 @@
 package com.knk.refrigerator_manager.ingre_refri;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -14,6 +15,7 @@ public class IngreRefriResponseDTO {
     private String ingreName;
     private String imgSource;
     private Boolean defaultIngre;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date refriExpirDate;
     private Boolean frozen;
 

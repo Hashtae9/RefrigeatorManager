@@ -4,6 +4,7 @@ import com.knk.refrigerator_manager.ingredient.Ingredient;
 import com.knk.refrigerator_manager.ingredient.IngredientDTO;
 import com.knk.refrigerator_manager.ingredient.IngredientRepository;
 import com.knk.refrigerator_manager.ingredient.IngredientService;
+import com.knk.refrigerator_manager.refrigerator.RefriIDDTO;
 import com.knk.refrigerator_manager.refrigerator.Refrigerator;
 import com.knk.refrigerator_manager.refrigerator.RefrigeratorRepository;
 import jakarta.transaction.Transactional;
@@ -28,7 +29,7 @@ public class Ingre_refriService {
     //작업
     //내 냉장고에 기존에 존재하는 재료 넣기
     @Transactional
-    public Long saveIngredient(IngredientDTO ingredientDTO, IngreRefriDTO ingreRefriDTO){
+    public Long saveIngredient(RefriIDDTO refriIDDTO, IngredientDTO ingredientDTO, IngreRefriDTO ingreRefriDTO){
         Ingredient ingredient = null;
         Optional<Ingredient> ingredient1 = ingredientRepository.findByIngreName(ingredientDTO.getIngreName());
         //재료가 없다면 저장
@@ -39,21 +40,19 @@ public class Ingre_refriService {
         ingredient = ingredientRepository.findByIngreName(ingredientDTO.getIngreName()).get();
 
          //냉장고는 무조건 존재
-        Refrigerator refrigerator = refrigeratorRepository.findById(2L)
-                .orElseThrow(() -> new IllegalArgumentException("해당 냉장고는 존재하지 않습니다. refrigerator ID = 2"));
+        Refrigerator refrigerator = refrigeratorRepository.findById(refriIDDTO.getRefriID())
+                .orElseThrow(() -> new IllegalArgumentException("해당 냉장고는 존재하지 않습니다. refrigerator ID = " + refriIDDTO.getRefriID()));
 
         return ingre_refriRepository.save(ingreRefriDTO.toEntity(ingredient, refrigerator)).getIngreRefriId();
     }
 
     //재료확인하고 지우기
     @Transactional
-    public Long delete(IngredientDTO ingredientDTO){
+    public Long delete(RefriIDDTO refriIDDTO, IngredientDTO ingredientDTO){
         Optional<Ingredient> ingredient1 = ingredientRepository.findByIngreName(ingredientDTO.getIngreName());
         Long ingreID = ingredient1.get().getIngreID();
 
-        //현재는 그냥 입력받지만 session을 통해 refriID 받아오기
-        Long refriID = 1L;
-        Optional<Ingre_refri> byRefriIDAndIngreID = ingre_refriRepository.findByRefriIDAndIngreID(refriID, ingreID);
+        Optional<Ingre_refri> byRefriIDAndIngreID = ingre_refriRepository.findByRefriIDAndIngreID(refriIDDTO.getRefriID(), ingreID);
         Long id = null;
         if(byRefriIDAndIngreID.isPresent()){
             id = byRefriIDAndIngreID.get().getIngreRefriId();
@@ -63,8 +62,8 @@ public class Ingre_refriService {
     }
 
     //냉장고속 재료 출력
-    public List<IngreRefriResponseDTO> findAllIngredientInRefri(){
-        List<Ingre_refri> ingre_refris = ingre_refriRepository.findAllByRefriID(1L);
+    public List<IngreRefriResponseDTO> findAllIngredientInRefri(Long refriID){
+        List<Ingre_refri> ingre_refris = ingre_refriRepository.findAllByRefriID(refriID);
         List<IngreRefriResponseDTO> ingreRefriResponseDTOS = new ArrayList<IngreRefriResponseDTO>();
         for(Ingre_refri i: ingre_refris){
             IngreRefriResponseDTO ingreRefriResponseDTO = new IngreRefriResponseDTO().builder()
