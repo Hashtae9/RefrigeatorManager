@@ -54,12 +54,12 @@ public class RecipeService {
         return recipeDTO;
     }
 
-    public List<String> getRecipeInRefri(){
+    public List<String> getRecipeInRefri(Long refriID){
         int count = recipeRepository.findRecipeCount();
         log.info("count : "+count);
 
         //냉장고 번호 세션에서 받아오기
-        List<Ingre_refri> ingre_refris = ingre_refriRepository.findAllByRefriID(1L);
+        List<Ingre_refri> ingre_refris = ingre_refriRepository.findAllByRefriID(refriID);
         List<Long> ingreIDs = new ArrayList<Long>();
         for(Ingre_refri i:ingre_refris){
             ingreIDs.add(i.getIngredient().getIngreID());

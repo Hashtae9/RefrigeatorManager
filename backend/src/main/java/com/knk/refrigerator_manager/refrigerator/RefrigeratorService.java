@@ -18,11 +18,13 @@ public class RefrigeratorService {
     }
 
     @Transactional
-    public Long patchUpdate(String refriName){
-        Optional<Refrigerator> refrigerator = refrigeratorRepository.findById(2L);
+    public Long patchUpdate(String refriName, Long refriID){
+        //냉장고가 있는지 확인
+        Optional<Refrigerator> refrigerator = refrigeratorRepository.findById(refriID);
         if(refrigerator.isEmpty()){
             return 0L;
         }
+
         Refrigerator r = refrigerator.get();
         if(r.getRefri_name() != null){
             r.setRefri_name(refriName);

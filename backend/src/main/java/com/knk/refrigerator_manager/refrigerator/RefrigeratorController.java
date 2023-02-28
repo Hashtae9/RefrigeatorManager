@@ -25,8 +25,12 @@ public class RefrigeratorController {
 //        return ResponseEntity.status(HttpStatus.OK).body(refrigerators);
 //    }
 
-    @PatchMapping("/api/{refriName}")
-    public ResponseEntity<Long> changeRefriName(@PathVariable String refriName){
-        return ResponseEntity.ok().body(refrigeratorService.patchUpdate(refriName));
+    @PatchMapping("/api/{refriName}/{refriID}")
+    public ResponseEntity<Long> changeRefriName(@PathVariable("refriName") String refriName, @PathVariable("refriID") Long refriID){
+        Long resultID = refrigeratorService.patchUpdate(refriName, refriID);
+        if(resultID == 0L){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(refriID);
     }
 }

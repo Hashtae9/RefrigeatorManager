@@ -42,9 +42,9 @@ public class RecipeController {
         return ResponseEntity.status(HttpStatus.OK).body(recipeService.getRecipeDTO(name));
     }
 
-    @GetMapping("/api/recommendRecipe")
-    public ResponseEntity<List<String>> getRecommendRecipe(){
-        List<String> recipes = recipeService.getRecipeInRefri();
+    @GetMapping("/api/recommendRecipe/{refriID}")
+    public ResponseEntity<List<String>> getRecommendRecipe(@PathVariable("refriID") Long refriID){
+        List<String> recipes = recipeService.getRecipeInRefri(refriID);
         if(recipes.isEmpty()){
             return ResponseEntity.notFound().build();
         }
