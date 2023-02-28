@@ -3,7 +3,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux';
-
+import RefrigeratorStack from './RefrigeratorStack';
 import RefrigeratorPage from './src/components/views/RefrigeratorPage/RefrigeratorPage';
 import LoginPage from './src/components/views/LoginPage/LoginPage';
 import LandingStack from './LandingStack';
@@ -22,7 +22,7 @@ export default function App() {
     >
       <NavigationContainer>
         <Tab.Navigator initialRouteName="Home">
-          <Tab.Screen name="Refrigerator" component={RefrigeratorPage} options={{headerShown: false}}/>
+          <Tab.Screen name="Refrigerator" component={RefrigeratorStack} options={{headerShown: false}}/>
           <Tab.Screen name="Home" component={LandingStack} options={{headerShown: false}}/>
           <Tab.Screen name="User" component={LoginPage} options={{headerShown: false}}/>
         </Tab.Navigator>

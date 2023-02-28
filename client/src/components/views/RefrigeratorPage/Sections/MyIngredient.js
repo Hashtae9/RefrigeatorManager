@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, Button, Dimensions } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, Button, Dimensions, TextInput } from 'react-native'
 import React from 'react'
 import { Chip } from '@rneui/themed';
 import { BottomSheet } from '@rneui/themed';
@@ -9,16 +9,24 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { imagePath } from '../../Common/ImagePath';
 import axios from 'axios';
-
-
+import { Overlay } from '@rneui/themed';
+import { useIsFocused } from '@react-navigation/native';
 const MyIngredient = () => {
+  const isFocused = useIsFocused(); // isFoucesd Define
   const user = useSelector(state => state.user.loginSuccess);
+  const refri = user.refrigerator
   useEffect(() => {
-    axios.get('http://10.0.2.2:8080/ingre_refri/api/ingreInRefri')
+    const getURl = 'http://10.0.2.2:8080/ingre_refri/api/ingreInRefri/' + refri;
+    axios.get(getURl)
      .then(response => setmyIngredientData(response.data))
      .catch(error => console.log(error))
-  }, [])
-  
+  }, [isFocused])
+
+  const setIsVisibleToggler = () => {
+    setIsVisible(!isVisible)
+  }
+  const [expireDate, setExpireDate] = useState("")
+  const [dateVisible, setDateVisible] = useState(false)
   const navigation = useNavigation();
   const [isVisible, setIsVisible] = useState(false)
   const [willAddIngredientList, setWillAddIngredient] = useState([])
@@ -26,7 +34,7 @@ const MyIngredient = () => {
   
   const rednerWillAdd = (ingredientDatas) => {
     let checkIngreData = []
-    console.log(myIngredientData)
+    //console.log(myIngredientData)
     myIngredientData.map((ingre, index) => checkIngreData.push(ingre.ingreName))
     return ingredientDatas.map((ingredient, index) => {
       if (checkIngreData.includes(ingredient.ingreName)) {
@@ -36,7 +44,7 @@ const MyIngredient = () => {
           <View style = {{ height:70, marginBottom:30, marginHorizontal:5 }} key={index} >
             <TouchableOpacity onPress={() => willAddToggle(ingredient)} style={styles.innerView} >
               <Image
-              source={ingredient.src}
+              source={imagePath[ingredient.ingreName]}
               style={styles.image}
               />
               <Text style={styles.text}>{ingredient.ingreName}</Text>
@@ -49,29 +57,49 @@ const MyIngredient = () => {
     )
   }
   const willAddIngredientHandler = () => {
-    const newList = [...myIngredientData, ...willAddIngredientList]
-
+    const newList = [...myIngredientData, willAddIngredientList]
+    
+    body = {
+        "refriInfo" : {
+            "refriID" : refri
+        } ,
+        "ingreInfo" : willAddIngredientList,
+        "IngreRefriInfo" : {
+            "refriExpirDate" :expireDate,
+            "frozen" : 1,
+            "ingreSeq" : willAddIngredientList.ingreID,
+            "refriID" : refri
+        }
+    }
+    console.log(body)
+    axios.post('http://10.0.2.2:8080/ingre_refri/api/addIngre', body)
+     .then(response => response.data)
+     .catch(error => console.log(error))
     setmyIngredientData(newList)
     setWillAddIngredient([])
     setIsVisible(false)
+    setDateVisible(false)
+    setExpireDate("")
   }
   const willAddToggle = (ingredient) => {
-    const currentIndex = willAddIngredientList.indexOf(ingredient)
-    const newList = [...willAddIngredientList]
+    setWillAddIngredient(ingredient)
+    setDateVisible(true)
+    // const currentIndex = willAddIngredientList.indexOf(ingredient)
+    // const newList = [...willAddIngredientList]
 
-    if (currentIndex === -1){
-      newList.push(ingredient)
-    } else {
-      newList.splice(currentIndex, 1)
-    }
-    setWillAddIngredient(newList)
+    // if (currentIndex === -1){
+    //   newList.push(ingredient)
+    // } else {
+    //   newList.splice(currentIndex, 1)
+    // }
+    // setWillAddIngredient(newList)
   }
 
 
   return (
     <View style = {styles.mainviewStyle}>
       {/* <TouchableOpacity ><Button title="user" onPress={() =>{
-        
+        //console.log(user)
         }}></Button></TouchableOpacity> */}
 
       <View style={{flexDirection:'row',
@@ -140,22 +168,37 @@ const MyIngredient = () => {
           />
         </View>
       }
-      <BottomSheet isVisible={isVisible}>
+      <BottomSheet isVisible={isVisible} onBackdropPress={() => setIsVisible(false)}>
         <ScrollView style={{ backgroundColor:'white', height: 300, borderTopLeftRadius: 10, borderTopRightRadius: 10 }}>
         <View style={styles.columViewStyle}>
           {ingredientData[0] && isVisible && rednerWillAdd(ingredientData)
+          
           }
+          <Overlay isVisible={dateVisible} onBackdropPress={() => setDateVisible(false)}>
+            <Text style={styles.textPrimary}>유통 기한을 입력하세요.</Text>
+            <TextInput
+              value={expireDate}
+              onChangeText={(expireDate) => setExpireDate(expireDate)}
+              placeholder={"YYYY-MM-DD"}
+              style={styles.input}    
+            />
+            <Button
+              title="확인"
+              color="pink"
+              onPress={ () => willAddIngredientHandler()}
+            />
+          </Overlay>
         </View>
         </ScrollView>
         <View style={{backgroundColor:'white'}}>
-        <Chip 
+        {/* <Chip 
             title="Add you Ingredients"
             color="pink"
             titleStyle = {{ fontSize: 20, fontFamily: 'SCDream5' }}
             containerStyle={{marginVertical: 15, 
               marginHorizontal: 30}}
             onPress={() => willAddIngredientHandler()}
-          />
+          /> */}
         </View>
       </BottomSheet>
     </View>
@@ -252,10 +295,30 @@ var styles = StyleSheet.create({
     fontFamily: "SCDream3",
     fontSize: 20, 
     color: "pink",
-    paddingTop: 15,
+    paddingTop: 18,
     paddingLeft: 25,
     paddingRight: 25
-  }
+  },
+  textPrimary: {
+    marginVertical: 20,
+    fontFamily: "SCDream5",
+    textAlign: 'center',
+    fontSize: 20,
+  },
+  textSecondary: {
+    marginBottom: 10,
+    textAlign: 'center',
+    fontSize: 17,
+  },
+  input: {
+    backgroundColor: '#FFFFFF',
+    width: '83%',
+    height: 48,
+    paddingLeft: 15,
+    borderRadius: 5,
+    marginBottom: 18,
+    alignSelf: 'center',
+  },
 }
 );
 export default MyIngredient

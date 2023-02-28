@@ -13,17 +13,14 @@ const RegisterPage = () => {
   const [email, setemail] = useState('');
   const qs = require('qs')
   const onSubmitHandler = () => {
+    body = {
+      "username": username,
+      "password": password,
+      "email": email      
+    }
     console.log(username)
     console.log(password)
-    axios.post('http://10.0.2.2:8080/registerUser', qs.stringify(
-      {
-        "username": username,
-        "password": password,
-        "email": email,
-        "role": "USER"
-      }
-    )
-      )
+    axios.post('http://10.0.2.2:8080/auth/signup', body)
      .then(response => navigation.navigate("LandingPage"))
      .catch(error => console.log(error))
   }

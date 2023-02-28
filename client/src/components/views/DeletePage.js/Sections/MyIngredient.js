@@ -8,41 +8,68 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { imagePath } from '../../Common/ImagePath';
 import axios from 'axios';
+import { Overlay } from '@rneui/themed';
 
 
 const MyIngredient = () => {
   const user = useSelector(state => state.user.loginSuccess);
+  const refri = user.refrigerator
   useEffect(() => {
-    axios.get('http://10.0.2.2:8080/ingre_refri/api/ingreInRefri')
+    const getURl = 'http://10.0.2.2:8080/ingre_refri/api/ingreInRefri/' + refri;
+    axios.get(getURl)
      .then(response => setmyIngredientData(response.data))
      .catch(error => console.log(error))
-  }, [])
+  }, [myIngredientData])
+  const navigation = useNavigation();
 
   const willDeleteToggle = (ingredient) => {
-    const currentIndex = willDeleteIngredientList.indexOf(ingredient)
-    const newList = [...willDeleteIngredientList]
-    console.log(willDeleteIngredientList)
-    if (currentIndex === -1){
-      newList.push(ingredient)
-    } else {
-      newList.splice(currentIndex, 1)
+    setWillDeleteIngredientList(ingredient)
+    setAlramVisible(true)
+    // const currentIndex = willDeleteIngredientList.indexOf(ingredient)
+    // const newList = [...willDeleteIngredientList]
+    // console.log(willDeleteIngredientList)
+    // if (currentIndex === -1){
+    //   newList.push(ingredient)
+    // } else {
+    //   newList.splice(currentIndex, 1)
+    // }
+    // setWillDeleteIngredientList(newList)
+  }
+  const willDeleteIngredientHandler = () => {
+    const newList = [...myIngredientData, willDeleteIngredientList]
+    // toggleOverlay()
+    setmyIngredientData(myIngredientData.filter((data) => data.ingreName !== willDeleteIngredientList.ingreName))
+    //setUsers(users.filter((user) => user.id !== id));
+    body = {
+        "refriInfo" : {
+            "refriID" : refri
+        } ,
+        "ingreInfo" : {
+          "ingreName" : willDeleteIngredientList.ingreName,
+          "imgSource" : willDeleteIngredientList.imgSource,
+          "defaultIngre" : willDeleteIngredientList.defaultIngre,
+        },
     }
-    setWillDeleteIngredientList(newList)
+    console.log(body)
+    axios.post('http://10.0.2.2:8080/ingre_refri/api/deleteIngre', body)
+     .then(response => response.data)
+     .catch(error => console.log(error))
+    setWillDeleteIngredientList([])
+    setAlramVisible(false)
   }
   const [willDeleteIngredientList, setWillDeleteIngredientList] = useState([])
-  const navigation = useNavigation();
   const [myIngredientData, setmyIngredientData] = useState([""])
-
+  const [alramVisible, setAlramVisible] = useState(false)
   return (
     <View style = {styles.mainviewStyle}>
-      <TouchableOpacity ><Button title="user" onPress={() =>{
+      {/* <TouchableOpacity ><Button title="user" onPress={() =>{
         
-        }}></Button></TouchableOpacity>
+        }}></Button></TouchableOpacity> */}
 
       <View style={{flexDirection:'row',
     alignItems: 'center',
     justifyContent: 'space-between'}}>
-        <Text style={styles.subTitles}>Ingredient</Text>
+        <Text style={styles.subTitles}>Ingredient Delete</Text>
       </View>
       <View
         style={{
@@ -66,15 +93,24 @@ const MyIngredient = () => {
         </View>
       ))
       }
+      <Overlay isVisible={alramVisible} onBackdropPress={() => setAlramVisible(false)}>
+        <Text style={styles.textPrimary}>삭제 하시겠습니까?</Text>
+        <Button
+          title="확인"
+          color="pink"
+          onPress={ () => willDeleteIngredientHandler()}
+        />
+      </Overlay>
       </View>
       }
       
       {myIngredientData[0] && 
       <Chip 
-        title="Delete"
+        title="뒤로"
         color="pink"
         titleStyle = {{ fontSize: 20, fontFamily: 'SCDream5' }}
         containerStyle={ styles.chip }
+        onPress = {() => navigation.navigate("RefrigeratorPage")}
       />}
       
     </View>
@@ -171,10 +207,21 @@ var styles = StyleSheet.create({
     fontFamily: "SCDream3",
     fontSize: 20, 
     color: "pink",
-    paddingTop: 15,
+    paddingTop: 18,
     paddingLeft: 25,
     paddingRight: 25
-  }
+  },
+  textPrimary: {
+    marginVertical: 20,
+    fontFamily: "SCDream5",
+    textAlign: 'center',
+    fontSize: 20,
+  },
+  textSecondary: {
+    marginBottom: 10,
+    textAlign: 'center',
+    fontSize: 17,
+  },
 }
 );
 export default MyIngredient

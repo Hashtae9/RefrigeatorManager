@@ -19,7 +19,8 @@ const LandingPage = () => {
           borderBottomWidth: StyleSheet.hairlineWidth,
         }}
       />
-      <CategoryFood />
+
+      {/* <CategoryFood /> */}
     </ScrollView>
   )
 }

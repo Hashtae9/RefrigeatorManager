@@ -12,7 +12,6 @@ function navigate(name, params) {
 }
 
 const CarouselCardItem = ({ item, navigation, index}) => {
-  console.log(item)
   return (
     <View style={styles.container} key={index}>
       <TouchableOpacity onPress={() => navigation.navigate("RecipePage",  { foodName: item })}>

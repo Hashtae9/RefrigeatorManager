@@ -13,7 +13,18 @@ export default function BarcodeScanner() {
   const [frameProcessor, barcodes] = useScanBarcodes([BarcodeFormat.ALL_FORMATS], {
     checkInverted: true,
   });
-
+  // const barcodeHandler = (barcode) => {
+  //   const getURl = 'http://10.0.2.2:8080/ingredient/api/bacode/' + barcode;
+  //   axios.get(getURl)
+  //    .then(response => setfoodName(response.data))
+  //    .then(axios.post())
+  //    .catch(error => console.log(error))
+  // }
+  // const registerBarcode = (barcode) => {
+  //   axios.post('http://10.0.2.2:8080/ingre_refri/api/addIngre', body)
+  //    .then(response => response.data)
+  //    .catch(error => console.log(error))
+  // }
   // Alternatively you can use the underlying function:
   //
   // const frameProcessor = useFrameProcessor((frame) => {
@@ -21,7 +32,7 @@ export default function BarcodeScanner() {
   //   const detectedBarcodes = scanBarcodes(frame, [BarcodeFormat.QR_CODE], { checkInverted: true });
   //   runOnJS(setBarcodes)(detectedBarcodes);
   // }, []);
-
+  const [foodName, setfoodName] = useState("")
   React.useEffect(() => {
     (async () => {
       const status = await Camera.requestCameraPermission();
@@ -41,6 +52,7 @@ export default function BarcodeScanner() {
           frameProcessorFps={5}
         />
         {barcodes.map((barcode, idx) => (
+          // barcodeHandler(barcode.displayValue)
           <Text key={idx} style={styles.barcodeTextURL}>
             {barcode.displayValue}
           </Text>

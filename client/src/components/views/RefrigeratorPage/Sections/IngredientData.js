@@ -1,70 +1,70 @@
 const ingredientData = [
     {
-        ingreName: "계란",
-        id: 1,
-        exp: "20201212",
-        src: require("../../../images/ingredients/egg.png")
-    },
-    {
         ingreName: "간장",
-        id: 2,
-        exp: "20201212",
-        src: require("../../../images/ingredients/soy-sauce.png")
+        ingreID: 1,
+        imgSource: "",
+        defaultIngre:0
     },
     {
-        ingreName: "참치",
-        id: 3,
-        exp: "20201212",
-        src: require("../../../images/ingredients/salmon.png")
+        ingreName: "고추장",
+        ingreID: 2,
+        imgSource: "",
+        defaultIngre:0
     },
     {
-        ingreName: "감자",
-        id: 4,
-        exp: "20201212",
-        src: require("../../../images/ingredients/potato.png")
+        ingreName: "양파",
+        ingreID: 3,
+        imgSource: "",
+        defaultIngre:0
+    },
+    {
+        ingreName: "당근",
+        ingreID: 4,
+        imgSource: "",
+        defaultIngre:0
+    },
+    {
+        ingreName: "계란",
+        ingreID: 5,
+        imgSource: "",
+        defaultIngre:0
     },
     {
         ingreName: "김치",
-        id: 5,
-        exp: "20201212",
-        src: require("../../../images/ingredients/kimchi.png")
+        ingreID: 6,
+        imgSource: "",
+        defaultIngre:0
     },
     {
-        ingreName: "옥수수",
-        id: 6,
-        exp: "20201212",
-        src: require("../../../images/ingredients/corn.png")
+        ingreName: "마늘",
+        ingreID: 7,
+        imgSource: "",
+        defaultIngre:0
     },
     {
-        ingreName: "강황",
-        id: 7,
-        exp: "20201212",
-        src: require("../../../images/ingredients/ginger.png")
+        ingreName: "파스타면",
+        ingreID: 8,
+        imgSource: "",
+        defaultIngre:0
     },
     {
-        ingreName: "건과일",
-        id: 8,
-        exp: "20201212",
-        src: require("../../../images/ingredients/dried-fruits.png")
+        ingreName: "돼지고기",
+        ingreID: 9,
+        imgSource: "",
+        defaultIngre:0
     },
     {
-        ingreName: "건어물",
-        id: 9,
-        exp: "20201212",
-        src: require("../../../images/ingredients/dried-fish.png")
+        ingreName: "된장",
+        ingreID: 10,
+        imgSource: "",
+        defaultIngre:0
     },
     {
-        ingreName: "게",
-        id: 10,
-        exp: "20201212",
-        src: require("../../../images/ingredients/crab.png")
+        ingreName: "참치",
+        ingreID: 11,
+        imgSource: "",
+        defaultIngre:0
     },
-    {
-        ingreName: "겨자",
-        id: 11,
-        exp: "20201212",
-        src: require("../../../images/ingredients/mustard.png")
-    }
     
 ]
 export {ingredientData}
