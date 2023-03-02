@@ -40,9 +40,6 @@ public class Recipe {
     @Column(name = "rec_category")
     private String rec_category;
 
-    @Column(name = "rec_ingre_count")
-    private int rec_ingre_count;
-
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Ingre_recipe> ingre_recipes = new ArrayList<>();
 }
