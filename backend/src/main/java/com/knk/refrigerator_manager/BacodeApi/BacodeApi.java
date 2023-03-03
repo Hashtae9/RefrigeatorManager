@@ -16,7 +16,7 @@ public class BacodeApi {
     private final WebClient webClient;
 
     @Value("${bacodekey}")
-    private String key; ///76e93aeb4c5b4f389df2/C005/json/1/5/BAR_CD={b}"
+    private String key;
     private final String url = "http://openapi.foodsafetykorea.go.kr/api";
 
     public BacodeApi(WebClient.Builder webClientBuilder) {

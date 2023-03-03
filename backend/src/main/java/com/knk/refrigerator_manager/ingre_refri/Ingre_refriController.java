@@ -61,7 +61,7 @@ public class Ingre_refriController {
     }
 
     // 재료 삭제
-    @DeleteMapping("/api/deleteIngre")
+    @PostMapping("/api/deleteIngre")
     public ResponseEntity<Long> deleteIngredient(@RequestBody ObjectNode saveObj){
         ObjectMapper mapper = new ObjectMapper();
 
