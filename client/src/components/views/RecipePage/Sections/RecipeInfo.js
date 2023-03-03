@@ -2,6 +2,9 @@ import { View, Text, ScrollView, StyleSheet, Image } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import { foodImagePath } from '../../Common/FoodImagePath'
+import Hyperlink from 'react-native-hyperlink'
+import { Linking } from 'react-native';
+
 const RecipeInfo = ({foodName}) => {
   
   useEffect(() => {
@@ -11,12 +14,23 @@ const RecipeInfo = ({foodName}) => {
      .catch(error => console.log(error))
   }, [])
   const [foodInfo, setFoodInfo] = useState([])
+  function openURL(url) {
+    Linking.openURL(url);
+  }
   return (
     <ScrollView style={styles.mainviewStyle} stickyHeaderIndices={[1]}>
-      <Image
-          source={foodImagePath[foodName]}
+      {foodImagePath[foodName] ?
+        <Image
+            source={foodImagePath[foodName]}
+            style={styles.image}
+        />
+         :
+        <Image  
+          source={require("../../../images/food/basic.jpg")}
           style={styles.image}
-      />
+        />
+        }
+      
       {foodInfo && foodInfo.ingredients &&
       <View>
       <Text style={styles.titles}>{foodName}</Text>
@@ -50,9 +64,9 @@ const RecipeInfo = ({foodName}) => {
           paddingTop: 10
         }}
       />
-      {foodInfo.rec_description.split("/n").map((step, index) => (
+      {foodInfo.rec_description.substr(3).split(/ \d{1}. /).map((step, index) => (
         <View key={index}>
-          <Text style={styles.contents}>{step}</Text>
+          <Text style={styles.contents}>{index+1}. {step}</Text>
             <View
               style={{
                 marginHorizontal:10,
@@ -71,7 +85,9 @@ const RecipeInfo = ({foodName}) => {
           paddingTop: 10
         }}
       />
-      <Text style={styles.contents}>{foodInfo.rec_link}</Text>
+      <Hyperlink onPress={(url) => openURL(url)}> 
+        <Text style={styles.contents}>{foodInfo.rec_link}</Text>
+      </Hyperlink>
       </View>
       }
     </ScrollView>

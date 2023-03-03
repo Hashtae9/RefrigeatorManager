@@ -21,7 +21,7 @@ const RegisterPage = () => {
     console.log(username)
     console.log(password)
     axios.post('http://10.0.2.2:8080/auth/signup', body)
-     .then(response => navigation.navigate("LandingPage"))
+     .then(response => navigation.navigate("User"))
      .catch(error => console.log(error))
   }
   return (

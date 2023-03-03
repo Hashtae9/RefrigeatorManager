@@ -10,6 +10,7 @@ import { useIsFocused } from '@react-navigation/native';
 const CanFood = () => {
   const user = useSelector(state => state.user.loginSuccess);
   const isFocused = useIsFocused(); // isFoucesd Define
+  const pagenum = Math.floor(Math.random() * 20);
 
   useEffect(() => {
     if (user) {
@@ -19,9 +20,10 @@ const CanFood = () => {
      .then(response => setCanFoodList(response.data))
      .catch(error => console.log(error))
     } else {
-      const getURl = 'http://10.0.2.2:8080/recipes/api/searchRecipe';
+      const getURl = 'http://10.0.2.2:8080/recipes/api/searchRecipe/' + pagenum;
+      console.log(pagenum)
       axios.get(getURl)
-     .then(response => setCanFoodList(response.data))
+     .then(response => setCanFoodList(response.data.content))
      .catch(error => console.log(error))
     }
   }, [isFocused])

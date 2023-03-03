@@ -84,10 +84,17 @@ const MyIngredient = () => {
       {myIngredientData[0] && myIngredientData.map((ingredientData, index) => (
         <View style = {{ height:70, marginBottom:30, marginHorizontal:5 }} key={index} >
           <TouchableOpacity onPress={() => willDeleteToggle(ingredientData)} style={styles.innerView} >
-            <Image
-            source={imagePath[ingredientData.ingreName]}
-            style={styles.image}
-            />
+          {imagePath[ingredientData.ingreName] ?
+              <Image
+              source={imagePath[ingredientData.ingreName]}
+              style={styles.image}
+              />
+               :
+               <Image
+              source={require("../../../images/ingredients/basic.png")}
+              style={styles.image}
+              />
+                }
             <Text style={styles.text}>{ingredientData.ingreName}</Text>
           </TouchableOpacity>
         </View>

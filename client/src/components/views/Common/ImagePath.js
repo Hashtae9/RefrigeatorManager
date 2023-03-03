@@ -41,6 +41,7 @@ export const imagePath = {
     두부 : require(prefix + 'tofu' + postfix),
     땅콩버터 : require(prefix + 'peanut-butter' + postfix),
     떡 : require(prefix + 'rice-cake' + postfix),
+    라면 : require(prefix + 'ramen' + postfix),
     라이스페이퍼 : require(prefix + 'rice-paper' + postfix),
     마늘: require(prefix+ "garlic" + postfix),
     마라소스 : require(prefix + 'sauce' + postfix),

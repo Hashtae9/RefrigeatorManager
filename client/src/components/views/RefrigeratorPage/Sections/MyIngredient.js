@@ -16,6 +16,7 @@ const MyIngredient = () => {
   const user = useSelector(state => state.user.loginSuccess);
   const refri = user.refrigerator
   useEffect(() => {
+    console.log(user)
     const getURl = 'http://10.0.2.2:8080/ingre_refri/api/ingreInRefri/' + refri;
     axios.get(getURl)
      .then(response => setmyIngredientData(response.data))
@@ -43,10 +44,17 @@ const MyIngredient = () => {
         return(
           <View style = {{ height:70, marginBottom:30, marginHorizontal:5 }} key={index} >
             <TouchableOpacity onPress={() => willAddToggle(ingredient)} style={styles.innerView} >
+              {imagePath[ingredient.ingreName] ?
               <Image
               source={imagePath[ingredient.ingreName]}
               style={styles.image}
               />
+               :
+               <Image
+              source={require("../../../images/ingredients/basic.png")}
+              style={styles.image}
+              />
+                }
               <Text style={styles.text}>{ingredient.ingreName}</Text>
             </TouchableOpacity>
           </View>
@@ -128,10 +136,17 @@ const MyIngredient = () => {
       {myIngredientData[0] && myIngredientData.map((ingredientData, index) => (
         <View style = {{ height:70, marginBottom:30, marginHorizontal:5 }} key={index} >
           <TouchableOpacity style={styles.innerView} >
-            <Image
-            source={imagePath[ingredientData.ingreName]}
-            style={styles.image}
-            />
+          {imagePath[ingredientData.ingreName] ?
+              <Image
+              source={imagePath[ingredientData.ingreName]}
+              style={styles.image}
+              />
+               :
+               <Image
+              source={require("../../../images/ingredients/basic.png")}
+              style={styles.image}
+              />
+                }
             <Text style={styles.text}>{ingredientData.ingreName}</Text>
           </TouchableOpacity>
         </View>
@@ -141,13 +156,23 @@ const MyIngredient = () => {
       }
       
       {myIngredientData[0] && 
-      <Chip 
+      <View>
+        <Chip 
         title="Able Recipes"
         color="pink"
         titleStyle = {{ fontSize: 20, fontFamily: 'SCDream5' }}
         containerStyle={ styles.chip }
         onPress={() => navigation.navigate("CanFoodListPage")}
-      />}
+      />
+      <Chip 
+            title="Add you Ingredients with Camera"
+            color="pink"
+            titleStyle = {{ fontSize: 20, fontFamily: 'SCDream5' }}
+            containerStyle={styles.chipbelow}
+            onPress={() =>navigation.navigate("BarcodeScanner")}
+          />
+      </View>
+      }
       {!myIngredientData[0] && 
         <View style={{ flex: 1, justifyContent: 'center', alignItems:'center' }}>
           <Image style={{ width: 150, height: 200 }}source={require("../../../images/fridge.png")}/>
