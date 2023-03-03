@@ -2,6 +2,8 @@ package com.knk.refrigerator_manager.BacodeApi;
 
 import com.knk.refrigerator_manager.BacodeApi.BacodeDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -9,9 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 @Service
+@PropertySource("classpath:config.properties")
 public class BacodeApi {
     private final WebClient webClient;
-    private final String key = "76e93aeb4c5b4f389df2"; ///76e93aeb4c5b4f389df2/C005/json/1/5/BAR_CD={b}"
+
+    @Value("${bacodekey}")
+    private String key; ///76e93aeb4c5b4f389df2/C005/json/1/5/BAR_CD={b}"
     private final String url = "http://openapi.foodsafetykorea.go.kr/api";
 
     public BacodeApi(WebClient.Builder webClientBuilder) {
