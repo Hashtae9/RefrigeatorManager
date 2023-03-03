@@ -12,14 +12,20 @@ function navigate(name, params) {
 }
 
 const CarouselCardItem = ({ item, navigation, index}) => {
-  console.log(item)
   return (
     <View style={styles.container} key={index}>
       <TouchableOpacity onPress={() => navigation.navigate("RecipePage",  { foodName: item })}>
+        {foodImagePath[item] ?
         <Image
           source={foodImagePath[item]}
           style={styles.image}
         />
+         :
+        <Image  
+          source={require("../../images/food/basic.jpg")}
+          style={styles.image}
+        />
+        }
         <View style={styles.title}>
           <Text style={{fontSize: 20, fontWeight: "bold", color: "#fff",}}>{item}</Text>
         </View>
@@ -53,7 +59,7 @@ const styles = StyleSheet.create({
   title: {
     position: 'absolute', 
     left: 10, 
-    bottom: 20, 
+    top: 20, 
     justifyContent: 'center', 
     alignItems: 'center'
   }

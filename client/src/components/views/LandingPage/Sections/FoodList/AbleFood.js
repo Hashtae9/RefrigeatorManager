@@ -6,21 +6,26 @@ import AbleFoodData from './AbleFoodData'
 import { useSelector } from 'react-redux';
 import CarouselCardItem from '../../../Common/CarouselCardItem'
 import axios from 'axios';
-
+import { useIsFocused } from '@react-navigation/native';
 const AbleFood = () => {
   const user = useSelector(state => state.user.loginSuccess);
+  const isFocused = useIsFocused(); // isFoucesd Define
+  const pagenum = Math.floor(Math.random() * 20);
   useEffect(() => {
     if (user) {
-      axios.get('http://10.0.2.2:8080/recipes/api/recommendRecipe')
+      const refri = user.refrigerator
+      const getURl = 'http://10.0.2.2:8080/recipes/api/recommendRecipe/' + refri;
+      axios.get(getURl)
      .then(response => setAbleFoodList(response.data))
      .catch(error => console.log(error))
     } else {
-      axios.get('http://10.0.2.2:8080/recipes/api/searchRecipe')
-     .then(response => setAbleFoodList(response.data))
+      const getURl = 'http://10.0.2.2:8080/recipes/api/searchRecipe/' + pagenum;
+      console.log(pagenum)
+      axios.get(getURl)
+     .then(response => setAbleFoodList(response.data.content))
      .catch(error => console.log(error))
     }
-    console.log(ableFoodList)
-  }, [user])
+  }, [isFocused])
   const [ableFoodList, setAbleFoodList] = useState([])
   const navigation = useNavigation();
   const SLIDER_WIDTH = Dimensions.get('window').width

@@ -1,12 +1,12 @@
 package com.knk.refrigerator_manager.jwt;
 
+import com.knk.refrigerator_manager.refrigerator.RefrigeratorRepository;
+import com.knk.refrigerator_manager.user.UserRepository;
 import io.jsonwebtoken.*;
 
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,10 +28,14 @@ public class TokenProvider {
     private static final String BEARER_TYPE = "Bearer";
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;            // 30분
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
+    private final RefrigeratorRepository refrigeratorRepository;
+    private final UserRepository userRepository;
 
     private final Key key;
 
-    public TokenProvider(@Value("${jwt.secret}") String secretKey) {
+    public TokenProvider(@Value("${jwt.secret}") String secretKey, RefrigeratorRepository refrigeratorRepository, UserRepository userRepository) {
+        this.refrigeratorRepository = refrigeratorRepository;
+        this.userRepository = userRepository;
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
@@ -52,7 +56,8 @@ public class TokenProvider {
                 .setExpiration(accessTokenExpiresIn)        // payload "exp": 1516239022 (예시)
                 .signWith(key, SignatureAlgorithm.HS512)    // header "alg": "HS512"
                 .compact();
-
+        String user = authentication.getName();
+        com.knk.refrigerator_manager.user.User userInfo = userRepository.findByUsername(user);
         // Refresh Token 생성
         String refreshToken = Jwts.builder()
                 .setExpiration(new Date(now + REFRESH_TOKEN_EXPIRE_TIME))
@@ -65,7 +70,7 @@ public class TokenProvider {
                 .accessTokenExpiresIn(accessTokenExpiresIn.getTime())
                 .refreshToken(refreshToken)
                 .username(authentication.getName())
-                .refrigerator(1L)
+                .refrigerator(userInfo.getRefrigerator().getRefriID())
                 .build();
     }
 
